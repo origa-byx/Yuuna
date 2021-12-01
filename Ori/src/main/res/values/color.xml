@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="_ori_white">#ffffff</color>
+    <color name="_ori_gray">#e0e0e0</color>
+    <color name="_ori_blue">#2d85f0</color>
+    <color name="_ori_yellow">#ffbc32</color>
+    <color name="_ori_green">#0aa858</color>
+    <color name="_ori_red">#f4433c</color>
+    <color name="_ori_transparent">#00000000</color>
+</resources>

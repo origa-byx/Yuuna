@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data></data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:background="@color/_ori_gray"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@drawable/_ori_status_color"
+        android:text="demo_act"
+        android:textColor="@color/_ori_white"
+        android:shadowColor="@color/_ori_red"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="5"
+        android:textSize="18sp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/cliAudio"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="录制"
+        android:letterSpacing="2"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:elevation="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/_ori_botton_b"
+        android:padding="15dp"/>
+
+    <TextView
+        android:id="@+id/timeIndex"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:alpha="0.9"
+        android:textColor="@color/_ori_yellow"
+        android:shadowColor="@color/white"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="5"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:elevation="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="15dp"/>
+
+    <ProgressBar
+        android:id="@+id/proAudio"
+        android:elevation="9dp"
+        android:visibility="invisible"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:indeterminateDrawable="@drawable/_ori_progressbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

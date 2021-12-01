@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.origami.view.OriRelativeLayout
+        android:id="@+id/_ori__top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+        <TextView
+            android:id="@+id/_ori__cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="12dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="15dp"
+            android:text="取消"
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/_ori_white"
+            android:gravity="center"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/_ori__select_place"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="12dp"
+            android:layout_centerInParent="true"
+            android:text="最近图片"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:paddingHorizontal="10dp"
+            android:gravity="center"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/_ori__complete"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="12dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="15dp"
+            android:text="完成"
+            android:paddingHorizontal="10dp"
+            android:gravity="center"
+            android:textSize="16sp"/>
+
+    </com.origami.view.OriRelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.origami.view.OriRecyclerView
+            android:id="@+id/_ori__recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:visibility="invisible"
+            android:id="@+id/_ori__recyclerView_select_place"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="100dp"
+            android:translationY="-100dp"/>
+
+    </FrameLayout>
+
+</LinearLayout>

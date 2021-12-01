@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/_ori_gray"
+    tools:context=".indexAct">
+
+    <tv.danmaku.ijk.media.widget.media.IjkVideoView
+        android:id="@+id/play_v"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+<!--    <TextView-->
+<!--        android:id="@+id/goNext"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:text="Start"-->
+<!--        android:textSize="18sp"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        android:gravity="center"-->
+<!--        android:paddingStart="20dp"-->
+<!--        android:paddingEnd="20dp"-->
+<!--        style="@style/_ori_botton_b"/>-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/node_name"-->
+<!--        android:hint="你的节点名称"-->
+<!--        android:paddingStart="20dp"-->
+<!--        android:maxLength="8"-->
+<!--        android:textSize="16sp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_marginStart="30dp"-->
+<!--        android:layout_marginEnd="30dp"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        android:layout_marginBottom="20dp"-->
+<!--        android:background="@drawable/_white_4r_8dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/goNext"/>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

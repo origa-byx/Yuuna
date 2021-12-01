@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.origami.origami">
+
+    <!--震动权限-->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
+    <application>
+        <activity
+            android:name="com.origami.activity.OriImageActivity"
+            android:label="图像预览"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"  />
+        <activity
+            android:name="com.origami.activity.OriImageSelect"
+            android:label="图片筛选"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop" />
+    </application>
+
+</manifest>

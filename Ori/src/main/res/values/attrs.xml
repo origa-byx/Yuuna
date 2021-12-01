@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="OriProgressView">
+        <attr name="color_back" format="color"/>
+        <attr name="color_pro" format="color"/>
+        <attr name="pro_text_size" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="YuunaTextView">
+        <attr name="yuuna_text" format="string"/>
+        <attr name="yuuna_radius" format="dimension"/>
+        <attr name="yuuna_text_size" format="dimension"/>
+    </declare-styleable>
+</resources>

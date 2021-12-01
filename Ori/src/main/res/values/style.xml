@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="_ori_act_dialog_noAction" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/_ori_transparent</item>
+    </style>
+
+    <style name="_ori_botton_b">
+        <item name="android:textColor">@color/_ori_text_b_pre</item>
+        <item name="android:background">@drawable/_ori_selector_b</item>
+    </style>
+
+    <style name="_ori_botton_b_anti">
+        <item name="android:textColor">@color/_ori_text_b_pre_anti</item>
+        <item name="android:background">@drawable/_ori_selector_b_anti</item>
+    </style>
+</resources>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/select_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:elevation="8dp"
+        android:background="@drawable/_white_4r_8dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"/>
+
+    <TextView
+        android:id="@+id/select_cancel"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/_white_4r_8dp"
+        android:elevation="8dp"
+        android:text="取消"
+        android:textSize="16sp"
+        android:textColor="#ff0000"
+        android:gravity="center"/>
+
+</LinearLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingVertical="10dp"
+    android:elevation="10dp"
+    android:background="@drawable/_white_4r_8dp">
+
+    <ImageView
+        android:id="@+id/_base_show_toast_icon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@mipmap/_toast_icon_sussce"
+        android:scaleType="centerInside"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="10dp"/>
+
+
+    <TextView
+        android:id="@+id/_base_show_toast_msg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:textColor="#000000"
+        android:text="这是一条测试消息"
+        android:layout_marginEnd="40dp"/>
+
+</LinearLayout>
