@@ -71,11 +71,12 @@ android {
 dependencies {
 
     implementation project(':Ori')
-    implementation project(':superplayerkit')
+//    implementation project(':superplayerkit')
 
     implementation(name:'qndroid-rtc-3.1.0',ext:'jar')
     //七牛云 RTC ->    如果您使用的版本是 2.5.0+，那么为了给您提供更好的使用体验，请务必依赖如下 dns 解析库：
-    implementation 'com.qiniu:happy-dns:0.2.17'
+//    implementation 'com.qiniu:happy-dns:0.2.17'
+
 //    implementation(name: 'LiteAVSDK_Player_8.9.10349', ext: 'aar')
 
     implementation'com.github.leifzhang:IjkLib:0.4.4'
