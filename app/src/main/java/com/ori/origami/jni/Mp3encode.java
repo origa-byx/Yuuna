@@ -1,5 +1,14 @@
 package com.ori.origami.jni;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 /**
  * @by: origami
  * @date: {2021-11-29}
@@ -37,6 +46,19 @@ public class Mp3encode {
     private native void init(int pcm_sampleRate, int mp3_sampleRate,
                              int mp3_channel, int mp3_bitRate, int quality);
 
+    public void setImage(String path){
+        try {
+            int size;
+            File file = new File(path);
+            FileInputStream stream = new FileInputStream(file);
+            byte[] bytes = new byte[(int) file.length()];
+            size = stream.read(bytes);
+            Log.e("ORI-Image", "size : " + size + "bytes: " + bytes.length);
+            setImage(bytes, size);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * 128位id3v1 tag尾  好像也没什么用这个 api（好玩） = =
@@ -56,6 +78,11 @@ public class Mp3encode {
      */
     public native int encode(short[] buffer_l, short[] buffer_r, int size, byte[] mp3buf);
 
+    /**
+     * 设置专辑封面
+     * @param imageSrc
+     */
+    private native void setImage(byte[] imageSrc, int size);
 
     public native int end(byte[] mp3buffer, int mp3buffer_size);
 

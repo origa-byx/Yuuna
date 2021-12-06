@@ -1,6 +1,7 @@
 package com.ori.origami.recoder;
 
 import android.media.AudioFormat;
+import android.media.AudioManager;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.os.Handler;
@@ -38,13 +39,13 @@ public class OriAudio implements Runnable {
     //44100是目前的标准，但是某些设备仍然支持22050，16000，11025
     //采样频率一般共分为22.05KHz、44.1KHz、48KHz三个等级
     private final static int AUDIO_SAMPLE_RATE = 16000;
-    //声道 双通道可采用 AudioFormat.CHANNEL_IN_STEREO 但不保证所有设备都支持
-    private final static int AUDIO_CHANNEL = AudioFormat.CHANNEL_IN_STEREO;
     //采用16位深pcm
     private final static int AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
     //pcm缓冲区字节大小
     private int bufferSizeInBytes = 0;
 
+    //声道 双通道可采用 AudioFormat.CHANNEL_IN_STEREO 但不保证所有设备都支持
+    private int audio_channel = AudioFormat.CHANNEL_IN_STEREO;
     private final Object lock = new Object();
     private final LinkedBlockingQueue<BufferData> pcmBufferQueue = new LinkedBlockingQueue<>();
     private AudioState currentState = AudioState.NO_INIT;
@@ -55,9 +56,13 @@ public class OriAudio implements Runnable {
     private byte[] mp3Buffer;
     private Handler threadHandler;
 
-    /** init by def */
-    public void init(){
-        init(MediaRecorder.AudioSource.MIC, AUDIO_SAMPLE_RATE, AUDIO_CHANNEL, AUDIO_ENCODING);
+    /**
+     * init by def
+     * @param record_stereo  是否是录制立体声，需要设备支持
+     */
+    public void init(boolean record_stereo){
+        init(MediaRecorder.AudioSource.MIC, AUDIO_SAMPLE_RATE,
+                record_stereo? AudioFormat.CHANNEL_IN_STEREO : AudioFormat.CHANNEL_IN_MONO, AUDIO_ENCODING);
     }
 
     /**
@@ -70,7 +75,7 @@ public class OriAudio implements Runnable {
      */
     public void init(int audioSource, int sampleRateInHz, int channelConfig, int audioFormat){
         if(audioRecord == null){
-            audioRecord = new AudioRecord(audioSource, sampleRateInHz, channelConfig, audioFormat,
+            audioRecord = new AudioRecord(audioSource, sampleRateInHz, audio_channel = channelConfig, audioFormat,
                     bufferSizeInBytes = AudioRecord.getMinBufferSize(sampleRateInHz, channelConfig, audioFormat));
             Ori.v("INIT", String.format("pcm缓冲区大小：%s  单通道缓冲区大小：%s", bufferSizeInBytes, bufferSizeInBytes / 2));
             if((currentState.status & 0b10) == 0b10){
@@ -196,7 +201,11 @@ public class OriAudio implements Runnable {
                 buffer = new BufferData(new short[bufferSizeInBytes]);
             }
             int size = audioRecord.read(buffer.pcmDates, 0, bufferSizeInBytes);
-            buffer.readSize = size / 2;
+            if(audio_channel == AudioFormat.CHANNEL_IN_STEREO){
+                buffer.readSize = size / 2;
+            }else {
+                buffer.readSize = size;
+            }
             Ori.d("ORI", String.format("读取成功字节：%s  单个通道：%s", size, buffer.readSize));
             if(threadHandler != null && buffer.readSize > 0){
                 Message message = Message.obtain(threadHandler, 1, buffer);
@@ -232,8 +241,8 @@ public class OriAudio implements Runnable {
 
         boolean isOver = false;
         private String fileName;
-        private final short[] pcm_l = new short[bufferSizeInBytes / 2];
-        private final short[] pcm_r = new short[bufferSizeInBytes / 2];
+        private short[] pcm_l;
+        private short[] pcm_r;
         private Handler m_threadHandler;
 
         public void initAndRun(String fileName) {
@@ -242,10 +251,12 @@ public class OriAudio implements Runnable {
             if(file.getParentFile() != null && !file.getParentFile().exists()){
                 file.getParentFile().mkdirs();
             }
-            if(threadHandler == null) {
-                this.fileName = fileName;
-                new Thread(this).start();
+            if(audio_channel == AudioFormat.CHANNEL_IN_STEREO){
+                pcm_l = new short[bufferSizeInBytes / 2];
+                pcm_r = new short[bufferSizeInBytes / 2];
             }
+            this.fileName = fileName;
+            new Thread(this).start();
         }
 
         @Override
@@ -265,11 +276,16 @@ public class OriAudio implements Runnable {
                     if(msg.what == 1) {
                         if (msg.obj instanceof BufferData) {
                             BufferData data = (BufferData) msg.obj;
-                            for (int i = 0; i < pcm_l.length; i++) {
-                                pcm_l[i] = data.pcmDates[2 * i];
-                                pcm_r[i] = data.pcmDates[2 * i + 1];
+                            int encodeSize;
+                            if(audio_channel == AudioFormat.CHANNEL_IN_STEREO){
+                                for (int i = 0; i < pcm_l.length; i++) {
+                                    pcm_l[i] = data.pcmDates[2 * i];
+                                    pcm_r[i] = data.pcmDates[2 * i + 1];
+                                }
+                                encodeSize = mp3encode.encode(pcm_l, pcm_r, data.readSize, mp3Buffer);
+                            }else {
+                                encodeSize = mp3encode.encode(data.pcmDates, data.pcmDates, data.readSize, mp3Buffer);
                             }
-                            int encodeSize = mp3encode.encode(pcm_l, pcm_r, data.readSize, mp3Buffer);
                             pcmBufferQueue.offer(data);
                             if (encodeSize > 0) {
                                 Ori.d("ORI", "编码成功长度：" + encodeSize);

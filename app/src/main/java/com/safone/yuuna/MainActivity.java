@@ -146,7 +146,7 @@ public class MainActivity extends AnnotationActivity {
                     Manifest.permission.WRITE_EXTERNAL_STORAGE}, new RequestPermissionNext() {
                 @Override
                 public void next() {
-                    OriAudio.instance().init();
+                    OriAudio.instance().init(false);
                     OriAudio.instance().initMp3encode(8000, 2, 16000, 7);
                     OriAudio.instance().mp3encode()
                             .setId3V1Tag("测试title", "ori", "ori专辑", "2021");

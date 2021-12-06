@@ -7,7 +7,7 @@
     android:toDegrees="1080.0">
     <shape android:innerRadiusRatio="3"
         android:shape="ring"
-        android:thicknessRatio="10"
+        android:thicknessRatio="30"
         android:useLevel="false">
         <gradient
             android:centerColor="@color/_ori_green"

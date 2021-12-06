@@ -20,7 +20,9 @@ std::string jString2str(JNIEnv& env, jstring j_str);
 class Mp3encode{
     private:
         lame_global_flags* m_lame;
+        int32_t index = 0;
     public:
+        void setImage(const char *image, size_t size);
 
         void setIdTag(const std::string& title, const std::string& artist, const std::string& album, const std::string& year);
 

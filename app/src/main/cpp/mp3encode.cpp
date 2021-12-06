@@ -76,14 +76,30 @@ extern "C" {
         mp3Encode->setIdTag(jString2str(*env, title), jString2str(*env, artist), jString2str(*env, album), jString2str(*env, year));
     }
 
+    JNIEXPORT void JNICALL
+    Java_com_ori_origami_jni_Mp3encode_setImage(JNIEnv *env, jobject thiz, jbyteArray image_src, jint size) {
+        auto* mp3Encode = reinterpret_cast<Mp3encode*>(env->GetLongField(thiz, objAtJava_ptr));
+        jbyte* jbytes = env->GetByteArrayElements(image_src, nullptr);
+        LOG_E("setImage");
+        mp3Encode->setImage(reinterpret_cast<const char *>(jbytes), size);
+        env->ReleaseByteArrayElements(image_src, jbytes, 0);
+    }
+
 }
 
 void Mp3encode::setIdTag(const std::string& title, const std::string& artist, const std::string& album, const std::string& year) {
+    if(!m_lame){ return; }
     id3tag_init(m_lame);
     id3tag_set_year(m_lame, year.c_str());
     id3tag_set_artist(m_lame, artist.c_str());
     id3tag_set_title(m_lame, artist.c_str());
     id3tag_set_album(m_lame, album.c_str());
+}
+
+void Mp3encode::setImage(const char *image, size_t size) {
+    if(!m_lame){ return; }
+    id3tag_set_albumart(m_lame, image, size);
+    lame_init_params(m_lame);
 }
 
 void Mp3encode::init(int32_t sample_rate_in, int32_t sample_rate_out, int32_t channel_out, int32_t bit_rate_out,
@@ -106,7 +122,8 @@ int32_t Mp3encode::encode_mp3(const int16_t *pcm_l, const int16_t *pcm_r,
 
 int32_t Mp3encode::end_write(uint8_t *mp3buffer, int32_t mp3buffer_size) {
     LOG_W("写入缓冲区文件尾部字节");
-    return lame_encode_flush(m_lame, mp3buffer, mp3buffer_size);
+    int ret = lame_encode_flush(m_lame, mp3buffer, mp3buffer_size);
+    return ret;
 }
 
 void Mp3encode::release() {

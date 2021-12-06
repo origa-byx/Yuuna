@@ -42,16 +42,6 @@ android {
     }
 
     packagingOptions {
-//        pickFirst 'lib/armeabi-v7a/libqrdatadecode.so'
-//        pickFirst 'lib/arm64-v8a/libqrdatadecode.so'
-//        pickFirst 'lib/armeabi-v7a/liborigami.so'
-//        pickFirst 'lib/arm64-v8a/liborigami.so'
-//        pickFirst 'lib/armeabi-v7a/libori_bitmap.so'
-//        pickFirst 'lib/arm64-v8a/libori_bitmap.so'
-//        pickFirst 'lib/armeabi-v7a/libori_rtsp.so'
-//        pickFirst 'lib/arm64-v8a/libori_rtsp.so'
-//        pickFirst 'lib/armeabi-v7a/libori_transcoding.so'
-//        pickFirst 'lib/arm64-v8a/libori_transcoding.so'
         pickFirst 'lib/arm64-v8a/libmp3lame.so'
         pickFirst 'lib/arm64-v8a/libmp3encode.so'
         pickFirst 'lib/armeabi-v7a/libmp3lame.so'

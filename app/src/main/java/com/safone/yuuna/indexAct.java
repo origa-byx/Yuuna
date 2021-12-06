@@ -20,10 +20,7 @@ import com.origami.origami.base.annotation.BContentView;
 import com.origami.origami.base.annotation.BView;
 import com.origami.origami.base.callback.RequestPermissionNext;
 import com.origami.utils.StatusUtils;
-import com.safone.yuuna.qn.QNTestAct;
-import com.tencent.liteav.demo.superplayer.SuperPlayerModel;
-import com.tencent.liteav.demo.superplayer.SuperPlayerVideoId;
-import com.tencent.liteav.demo.superplayer.SuperPlayerView;
+
 
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;

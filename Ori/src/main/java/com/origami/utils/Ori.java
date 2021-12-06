@@ -217,7 +217,9 @@ public class Ori {
         Calendar date = Calendar.getInstance();
         builder.append(date.get(Calendar.YEAR))
                 .append(date.get(Calendar.MONTH) < 9 ? "0" + (date.get(Calendar.MONTH) + 1) : (date.get(Calendar.MONTH) + 1))
-                .append(date.get(Calendar.DATE) < 10 ? "0" + date.get(Calendar.DATE) : date.get(Calendar.DATE));
+                .append(date.get(Calendar.DATE) < 10 ? "0" + date.get(Calendar.DATE) : date.get(Calendar.DATE))
+                .append(date.get(Calendar.HOUR_OF_DAY))
+                .append(date.get(Calendar.MINUTE) < 9? "0" + date.get(Calendar.MINUTE) : date.get(Calendar.MINUTE));
         for (int i = 0; i < length; i++) {
             builder.append(ran.charAt(random.nextInt(ran.length())));
         }
@@ -331,6 +333,9 @@ public class Ori {
         return getSaveFilePath(context, Environment.DIRECTORY_DOCUMENTS);
     }
 
+    public static String getSaveFilePath(Context context, String type){
+        return getSaveFilePath(context, type, true);
+    }
     /**
      * 获取统一保存路径
      *   sdk-version > 29 即 android 10 以上时 不允许在根目录 创建文件夹
@@ -340,20 +345,20 @@ public class Ori {
      * @param type      文件类型  比如 {@link Environment#DIRECTORY_MUSIC}
      * @return
      */
-    public static String getSaveFilePath(Context context, String type){
+    public static String getSaveFilePath(Context context, String type, boolean add){
         String rootPath;
         if((Build.VERSION.SDK_INT < Build.VERSION_CODES.Q && Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
                 || context.getApplicationInfo().targetSdkVersion < Build.VERSION_CODES.Q) {
             int labelRes = context.getApplicationInfo().labelRes;
             if (labelRes == 0) {
                 rootPath = Environment.getExternalStorageDirectory().getPath() +
-                        File.separator + "ori" +
-                        File.separator + type + File.separator;
+                        File.separator + "ori" + File.separator;
             } else {
                 rootPath = Environment.getExternalStorageDirectory().getPath() +
                         File.separator + context.getResources().getString(labelRes) +
-                        File.separator + type + File.separator;
+                        File.separator;
             }
+            if(add){ rootPath = rootPath + type + File.separator; }
         }else {
             rootPath = context.getExternalFilesDir(type).getPath() + File.separator;
         }

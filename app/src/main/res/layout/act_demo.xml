@@ -9,10 +9,11 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/artImage"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@drawable/_ori_status_color"
-        android:text="demo_act"
+        android:text="MP3"
         android:textColor="@color/_ori_white"
         android:shadowColor="@color/_ori_red"
         android:shadowDx="5"
@@ -62,8 +63,8 @@
         android:id="@+id/proAudio"
         android:elevation="9dp"
         android:visibility="invisible"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
         android:indeterminateDrawable="@drawable/_ori_progressbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
