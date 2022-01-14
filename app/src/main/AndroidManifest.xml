@@ -29,6 +29,13 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name="com.ori.opengl.OpenGlAct" android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".indexAct" android:screenOrientation="portrait">
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
@@ -37,11 +44,11 @@
 <!--            </intent-filter>-->
         </activity>
         <activity android:name="com.ori.origami.DemoAct" android:screenOrientation="portrait" android:launchMode="singleTop">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity android:name=".MainActivity"  android:screenOrientation="portrait" android:launchMode="singleTop"/>
         <activity android:name=".qn.QNTestAct"  android:screenOrientation="portrait" android:launchMode="singleTop"/>

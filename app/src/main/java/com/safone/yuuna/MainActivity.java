@@ -114,7 +114,7 @@ public class MainActivity extends AnnotationActivity {
             }
         });
 
-//        UdpP2P.getInstance().initAndRun();
+        UdpP2P.getInstance().initAndRun();
     }
 
     @BClick(R.id.b1)
@@ -132,34 +132,6 @@ public class MainActivity extends AnnotationActivity {
     @Override
     protected void setStatusBar() {
         StatusUtils.setStatusBarResource(this, R.drawable._ori_status_color);
-    }
-
-    boolean click = false;
-    @BClick(R.id.testRe)
-    public void testRe(){
-        if(click){
-            OriAudio.instance().stopRecord();
-            OriAudio.instance().release();
-            click = false;
-        }else {
-            checkPermissionAndThen(new String[]{Manifest.permission.RECORD_AUDIO,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE}, new RequestPermissionNext() {
-                @Override
-                public void next() {
-                    OriAudio.instance().init(false);
-                    OriAudio.instance().initMp3encode(8000, 2, 16000, 7);
-                    OriAudio.instance().mp3encode()
-                            .setId3V1Tag("测试title", "ori", "ori专辑", "2021");
-                    OriAudio.instance().startRecord(Ori.getSaveFilePath(MainActivity.this) + "test.mp3");
-                    click = true;
-                }
-
-                @Override
-                public void failed() {
-
-                }
-            });
-        }
     }
 
 }

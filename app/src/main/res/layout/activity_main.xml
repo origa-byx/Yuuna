@@ -50,8 +50,7 @@
         <View
             android:id="@+id/testRe"
             android:layout_width="20dp"
-            android:layout_weight="0.5"
-            android:background="@color/_ori_yellow"
+            android:layout_weight="0.2"
             android:layout_height="match_parent"/>
 
         <TextView
