@@ -28,7 +28,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        tools:ignore="LockedOrientationActivity">
         <activity android:name="com.ori.opengl.OpenGlAct" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,15 +44,18 @@
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
         </activity>
-        <activity android:name="com.ori.origami.DemoAct" android:screenOrientation="portrait" android:launchMode="singleTop">
+        <activity android:name="com.ori.origami.DemoAct"
+            android:screenOrientation="portrait" android:launchMode="singleTop">
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
         </activity>
-        <activity android:name=".MainActivity"  android:screenOrientation="portrait" android:launchMode="singleTop"/>
-        <activity android:name=".qn.QNTestAct"  android:screenOrientation="portrait" android:launchMode="singleTop"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait" android:launchMode="singleTop"/>
+        <activity android:name=".qn.QNTestAct"
+            android:screenOrientation="portrait" android:launchMode="singleTop"/>
     </application>
 
 </manifest>
